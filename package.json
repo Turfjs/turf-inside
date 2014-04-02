@@ -26,6 +26,7 @@
   "homepage": "https://github.com/morganherlocker/turf-inside",
   "devDependencies": [
     "tape",
-    "turf-point"
+    "turf-point",
+    "turf-polygon"
   ]
 }
