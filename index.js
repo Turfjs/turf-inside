@@ -2,7 +2,7 @@
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
 
-module.exports = function(point, polygon, done){
+module.exports = function(point, polygon){
   var x = point.geometry.coordinates[0]
   var y = point.geometry.coordinates[1]
   var vs = polygon.geometry.coordinates[0]
