@@ -15,5 +15,4 @@ var pt = point(75, 75)
 var isInside = inside(pt, poly)
 
 console.log(isInside) // true
-})
 ```
