@@ -4,6 +4,27 @@ turf-inside
 
 Checks to see if a point is inside of a polygon. The polygon can be convex or concave.
 
+###Install
+
+```sh
+npm install turf-inside
+```
+
+###Parameters
+
+|name|description|
+|---|---|
+|point|A FeatureCollection of Point Features|
+|polygon|Determines if the point is inside the polygon or not|
+
+###Usage
+
+```js
+inside(pt, poly)
+```
+
+###Example
+
 ```js
 var inside = require('turf-inside')
 var point = require('turf-point')
