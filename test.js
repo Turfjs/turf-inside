@@ -37,12 +37,18 @@ test('poly with hole', function (t) {
   t.end();
 });
 
-test('multipolygon', function (t) {
-  var pt = point(-86.69208526611328, 36.20373274711739);
-  t.end();
-});
-
 test('multipolygon with hole', function (t) {
-  var pt = point(-86.69208526611328, 36.20373274711739);
+  var ptInHole = point(-86.69208526611328, 36.20373274711739);
+  var ptInPoly = point(-86.72229766845702, 36.20258997094334);
+  var ptInPoly2 = point(-86.75079345703125, 36.18527313913089);
+  var ptOutsidePoly = point(-86.75302505493164, 36.23015046460186);
+  var multiPolyHole = JSON.parse(fs.readFileSync('./fixtures/multipoly-with-hole.geojson'));
+
+  t.false(inside(ptInHole, multiPolyHole));
+  t.true(inside(ptInPoly, multiPolyHole));
+  t.true(inside(ptInPoly2, multiPolyHole));
+  t.true(inside(ptInPoly, multiPolyHole));
+  t.false(inside(ptOutsidePoly, multiPolyHole))
+
   t.end();
 });
