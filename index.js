@@ -3,9 +3,9 @@
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
 
 module.exports = function(point, polygon){
-  var x = point.geometry.coordinates[0]
-  var y = point.geometry.coordinates[1]
-  var vs = polygon.geometry.coordinates[0]
+  var x = point.geometry.coordinates[0];
+  var y = point.geometry.coordinates[1];
+  var vs = polygon.geometry.coordinates[0];
 
   var isInside = false;
   for (var i = 0, j = vs.length - 1; i < vs.length; j = i++) {
@@ -16,6 +16,6 @@ module.exports = function(point, polygon){
         && (x < (xj - xi) * (y - yi) / (yj - yi) + xi);
     if (intersect) isInside = !isInside;
   }
-  return isInside
+  return isInside;
 }
 
