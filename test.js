@@ -4,7 +4,7 @@ var point = require('turf-point');
 var polygon = require('turf-polygon');
 var fs = require('fs');
 
-test('featureCollection', function(t){
+test('featureCollection', function (t) {
   // test for a simple polygon
   var poly = polygon([[[0,0], [0,100], [100,100], [100,0]]]);
   var ptIn = point(50, 50);

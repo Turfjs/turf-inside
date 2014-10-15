@@ -2,7 +2,7 @@
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
 
-module.exports = function(point, polygon){
+module.exports = function(point, polygon) {
   var polys = polygon.geometry.coordinates;
   var pt = [point.geometry.coordinates[0], point.geometry.coordinates[1]];
   // normalize to multipolygon
@@ -10,7 +10,6 @@ module.exports = function(point, polygon){
 
   var insidePoly = false;
   var i = 0;
-
   while (i < polys.length && !insidePoly) {
     // check if it is in the outer ring first
     if(inRing(pt, polys[i][0])) {
