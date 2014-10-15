@@ -28,5 +28,11 @@
     "tape",
     "turf-point",
     "turf-polygon"
-  ]
+  ],
+  "bin": {
+    "turf-point": "bin/point.js"
+  },
+  "dependencies": {
+    "minimist": "^0.2.0"
+  }
 }

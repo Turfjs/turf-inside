@@ -37,3 +37,10 @@ var isInside = inside(pt, poly)
 
 console.log(isInside) // true
 ```
+
+###CLI
+
+```bash
+npm install turf-inside -g
+turf-inside point.geojson polygon.geojson
+```
