@@ -1,7 +1,8 @@
 var test = require('tape');
-var inside = require('./')
-var point = require('turf-point')
-var polygon = require('turf-polygon')
+var inside = require('./');
+var point = require('turf-point');
+var polygon = require('turf-polygon');
+var fs = require('fs');
 
 test('featureCollection', function(t){
   // test for a simple polygon
@@ -24,5 +25,24 @@ test('featureCollection', function(t){
 });
 
 test('poly with hole', function (t) {
+  var ptInHole = point(-86.69208526611328, 36.20373274711739);
+  var ptInPoly = point(-86.72229766845702, 36.20258997094334);
+  var ptOutsidePoly = point(-86.75079345703125, 36.18527313913089);
+  var polyHole = JSON.parse(fs.readFileSync('./fixtures/poly-with-hole.geojson'));
+
+  t.false(inside(ptInHole, polyHole));
+  t.true(inside(ptInPoly, polyHole));
+  t.false(inside(ptOutsidePoly, polyHole))
+
+  t.end();
+});
+
+test('multipolygon', function (t) {
+  var pt = point(-86.69208526611328, 36.20373274711739);
+  t.end();
+});
+
+test('multipolygon with hole', function (t) {
+  var pt = point(-86.69208526611328, 36.20373274711739);
   t.end();
 });
