@@ -15,7 +15,7 @@ npm install turf-inside
 |name|description|
 |---|---|
 |point|A Point Feature|
-|polygon|Determines if the point is inside the polygon or not|
+|polygon|A Polygon or MultiPolygon Feature|
 
 ###Usage
 
