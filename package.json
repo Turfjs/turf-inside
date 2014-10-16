@@ -24,15 +24,13 @@
     "url": "https://github.com/morganherlocker/turf-inside/issues"
   },
   "homepage": "https://github.com/morganherlocker/turf-inside",
-  "devDependencies": [
-    "tape",
-    "turf-point",
-    "turf-polygon"
-  ],
-  "bin": {
-    "turf-point": "bin/point.js"
-  },
+  "bin": {},
   "dependencies": {
     "minimist": "^0.2.0"
+  },
+  "devDependencies": {
+    "tape": "^3.0.0",
+    "turf-point": "^0.1.6",
+    "turf-polygon": "^0.1.1"
   }
 }
