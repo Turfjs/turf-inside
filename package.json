@@ -29,6 +29,7 @@
     "minimist": "^0.2.0"
   },
   "devDependencies": {
+    "benchmark": "^1.0.0",
     "tape": "^3.0.0",
     "turf-point": "^0.1.6",
     "turf-polygon": "^0.1.1"

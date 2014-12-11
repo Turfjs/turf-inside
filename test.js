@@ -32,7 +32,7 @@ test('poly with hole', function (t) {
 
   t.false(inside(ptInHole, polyHole));
   t.true(inside(ptInPoly, polyHole));
-  t.false(inside(ptOutsidePoly, polyHole))
+  t.false(inside(ptOutsidePoly, polyHole));
 
   t.end();
 });
@@ -48,7 +48,7 @@ test('multipolygon with hole', function (t) {
   t.true(inside(ptInPoly, multiPolyHole));
   t.true(inside(ptInPoly2, multiPolyHole));
   t.true(inside(ptInPoly, multiPolyHole));
-  t.false(inside(ptOutsidePoly, multiPolyHole))
+  t.false(inside(ptOutsidePoly, multiPolyHole));
 
   t.end();
 });

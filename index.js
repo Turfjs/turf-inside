@@ -20,7 +20,7 @@ module.exports = function(point, polygon) {
         if(inRing(pt, polys[i][k])) {
           inHole = true;
         }
-        k++
+        k++;
       }
       if(!inHole) insidePoly = true;
     }
