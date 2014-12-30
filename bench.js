@@ -1,17 +1,20 @@
-var inside = require('./');
+global.inside = require('./');
 var Benchmark = require('benchmark');
 var fs = require('fs');
-var point = require('turf-point');
-var polygon = require('turf-polygon');
+global.point = require('turf-point');
+global.polygon = require('turf-polygon');
 
-var poly = polygon([[[0,0], [0,100], [100,100], [100,0]]]);
-var ptIn = point(50, 50);
-var ptOut = point(140, 150);
+global.poly = polygon([[[0,0], [0,100], [100,100], [0, 0]]]);
+global.ptIn = point(50, 50);
+global.ptOut = point(140, 150);
 
 var suite = new Benchmark.Suite('turf-inside');
 suite
   .add('turf-inside',function () {
-    inside(ptIn, poly);
+    global.inside(global.ptIn, global.poly);
+  })
+  .add('turf-inside-special',function () {
+    global.inside.special(global.ptIn, global.poly);
   })
   .on('cycle', function (event) {
     console.log(String(event.target));
