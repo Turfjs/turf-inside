@@ -2,6 +2,24 @@
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
 
+/**
+ * Checks to see if a point is inside of a polygon. The polygon can
+ * be convex or concave. The function accepts any valid polygon or multipolygon
+ * and accounts for holes.
+ *
+ * @module turf/inside
+ * @param {Point} needle
+ * @param {Polygon} haystack
+ * @return {boolean} whether the Point is inside the Polygon
+ * @example
+ * var pt = turf.point(75, 75);
+ * var poly = turf.polygon([[[0,0], [50, 50], [0,100],
+ *   [100,100], [100,0], [0, 0]]]);
+ * var features = turf.featurecollection([pt, poly]);
+ * //=features
+ * var isInside = turf.inside(pt, poly);
+ * //=isInside
+ */
 module.exports = function(point, polygon) {
   var polys = polygon.geometry.coordinates;
   var pt = [point.geometry.coordinates[0], point.geometry.coordinates[1]];
