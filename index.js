@@ -26,8 +26,12 @@
  * var features = turf.featurecollection([pt1, pt2, poly]);
  *
  * //=features
- * var isInside = turf.inside(pt, poly);
- * //=isInside
+ *
+ * var isInside1 = turf.inside(pt1, poly);
+ * //=isInside1
+ *
+ * var isInside2 = turf.inside(pt2, poly);
+ * //=isInside2
  */
 module.exports = function(point, polygon) {
   var polys = polygon.geometry.coordinates;
