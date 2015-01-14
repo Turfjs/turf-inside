@@ -12,10 +12,19 @@
  * @param {Polygon} polygon a Polygon feature
  * @return {boolean} whether the Point is inside the Polygon
  * @example
- * var pt = turf.point(75, 75);
- * var poly = turf.polygon([[[0,0], [50, 50], [0,100],
- *   [100,100], [100,0], [0, 0]]]);
- * var features = turf.featurecollection([pt, poly]);
+ * var pt1 = turf.point(-111.467285, 40.75766);
+ * pt1.properties['marker-color'] = "#f00";
+ * var pt2 = turf.point(-111.873779, 40.647303);
+ * pt2.properties['marker-color'] = "#0f0";
+ * var poly = turf.polygon([[
+ *  [-112.074279, 40.52215],
+ *  [-112.074279, 40.853293],
+ *  [-111.610107, 40.853293],
+ *  [-111.610107, 40.52215],
+ *  [-112.074279, 40.52215]
+ * ]]);
+ * var features = turf.featurecollection([pt1, pt2, poly]);
+ *
  * //=features
  * var isInside = turf.inside(pt, poly);
  * //=isInside
