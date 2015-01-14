@@ -8,8 +8,8 @@
  * and accounts for holes.
  *
  * @module turf/inside
- * @param {Point} needle
- * @param {Polygon} haystack
+ * @param {Point} point a Point feature
+ * @param {Polygon} polygon a Polygon feature
  * @return {boolean} whether the Point is inside the Polygon
  * @example
  * var pt = turf.point(75, 75);
