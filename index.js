@@ -3,8 +3,8 @@
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
 
 /**
- * Checks to see if a point is inside of a polygon. The polygon can
- * be convex or concave. The function accepts any valid polygon or multipolygon
+ * Checks to see if a {@link Point} is inside of a {@link Polygon}. The Polygon can
+ * be convex or concave. The function accepts any valid Polygon or {@link MultiPolygon}
  * and accounts for holes.
  *
  * @module turf/inside
