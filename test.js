@@ -7,16 +7,16 @@ var fs = require('fs');
 test('featureCollection', function (t) {
   // test for a simple polygon
   var poly = polygon([[[0,0], [0,100], [100,100], [100,0]]]);
-  var ptIn = point(50, 50);
-  var ptOut = point(140, 150);
+  var ptIn = point([50, 50]);
+  var ptOut = point([140, 150]);
 
   t.true(inside(ptIn, poly), 'point inside simple polygon');
   t.false(inside(ptOut, poly), 'point outside simple polygon');
 
   // test for a concave polygon
   var concavePoly = polygon([[[0,0], [50, 50], [0,100], [100,100], [100,0]]]);
-  var ptConcaveIn = point(75, 75);
-  var ptConcaveOut = point(25, 50);
+  var ptConcaveIn = point([75, 75]);
+  var ptConcaveOut = point([25, 50]);
 
   t.true(inside(ptConcaveIn, concavePoly), 'point inside concave polygon');
   t.false(inside(ptConcaveOut, concavePoly), 'point outside concave polygon');
@@ -25,9 +25,9 @@ test('featureCollection', function (t) {
 });
 
 test('poly with hole', function (t) {
-  var ptInHole = point(-86.69208526611328, 36.20373274711739);
-  var ptInPoly = point(-86.72229766845702, 36.20258997094334);
-  var ptOutsidePoly = point(-86.75079345703125, 36.18527313913089);
+  var ptInHole = point([-86.69208526611328, 36.20373274711739]);
+  var ptInPoly = point([-86.72229766845702, 36.20258997094334]);
+  var ptOutsidePoly = point([-86.75079345703125, 36.18527313913089]);
   var polyHole = JSON.parse(fs.readFileSync('./fixtures/poly-with-hole.geojson'));
 
   t.false(inside(ptInHole, polyHole));
@@ -38,10 +38,10 @@ test('poly with hole', function (t) {
 });
 
 test('multipolygon with hole', function (t) {
-  var ptInHole = point(-86.69208526611328, 36.20373274711739);
-  var ptInPoly = point(-86.72229766845702, 36.20258997094334);
-  var ptInPoly2 = point(-86.75079345703125, 36.18527313913089);
-  var ptOutsidePoly = point(-86.75302505493164, 36.23015046460186);
+  var ptInHole = point([-86.69208526611328, 36.20373274711739]);
+  var ptInPoly = point([-86.72229766845702, 36.20258997094334]);
+  var ptInPoly2 = point([-86.75079345703125, 36.18527313913089]);
+  var ptOutsidePoly = point([-86.75302505493164, 36.23015046460186]);
   var multiPolyHole = JSON.parse(fs.readFileSync('./fixtures/multipoly-with-hole.geojson'));
 
   t.false(inside(ptInHole, multiPolyHole));
