@@ -4,11 +4,12 @@
   "description": "turf inside module",
   "main": "index.js",
   "scripts": {
-    "test": "tape test.js"
+    "test": "tape test.js",
+    "doc": "dox -r < index.js | doxme --readme > README.md"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/morganherlocker/turf-inside.git"
+    "url": "https://github.com/Turfjs/turf-inside.git"
   },
   "keywords": [
     "geojson",
@@ -21,9 +22,9 @@
   "author": "morganherlocker",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/morganherlocker/turf-inside/issues"
+    "url": "https://github.com/Turfjs/turf-inside/issues"
   },
-  "homepage": "https://github.com/morganherlocker/turf-inside",
+  "homepage": "https://github.com/Turfjs/turf-inside",
   "bin": {},
   "dependencies": {
     "minimist": "^1.1.0"
@@ -31,7 +32,9 @@
   "devDependencies": {
     "benchmark": "^1.0.0",
     "tape": "^3.0.3",
-    "turf-point": "^1.2.0",
-    "turf-polygon": "^0.1.1"
+    "turf-point": "^2.0.0",
+    "turf-polygon": "^1.0.1",
+    "dox": "^0.6.1",
+    "doxme": "^1.4.2"
   }
 }
