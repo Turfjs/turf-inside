@@ -6,7 +6,7 @@ var fs = require('fs');
 
 test('featureCollection', function (t) {
   // test for a simple polygon
-  var poly = polygon([[[0,0], [0,100], [100,100], [100,0]]]);
+  var poly = polygon([[[0,0], [0,100], [100,100], [100,0], [0,0]]]);
   var ptIn = point([50, 50]);
   var ptOut = point([140, 150]);
 
@@ -14,7 +14,7 @@ test('featureCollection', function (t) {
   t.false(inside(ptOut, poly), 'point outside simple polygon');
 
   // test for a concave polygon
-  var concavePoly = polygon([[[0,0], [50, 50], [0,100], [100,100], [100,0]]]);
+  var concavePoly = polygon([[[0,0], [50, 50], [0,100], [100,100], [100,0], [0,0]]]);
   var ptConcaveIn = point([75, 75]);
   var ptConcaveOut = point([25, 50]);
 
