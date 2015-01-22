@@ -3,17 +3,19 @@
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
 
 /**
- * Checks to see if a {@link Point} is inside of a {@link Polygon}. The Polygon can
+ * Takes a {@link Point} feature and a {@link Polygon} feature and determines if the Point resides inside the Polygon. The Polygon can
  * be convex or concave. The function accepts any valid Polygon or {@link MultiPolygon}
  * and accounts for holes.
  *
  * @module turf/inside
  * @param {Point} point a Point feature
  * @param {Polygon} polygon a Polygon feature
- * @return {boolean} whether the Point is inside the Polygon
+ * @return {Boolean} `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon
  * @example
- * var pt1 = turf.point([-111.467285, 40.75766], {'marker-color': "#f00"});
- * var pt2 = turf.point([-111.873779, 40.647303], {'marker-color': "#0f0" });
+ * var pt1 = turf.point([-111.467285, 40.75766],
+ *  {'marker-color': "#f00"});
+ * var pt2 = turf.point([-111.873779, 40.647303],
+ *  {'marker-color': "#0f0" });
  * var poly = turf.polygon([[
  *  [-112.074279, 40.52215],
  *  [-112.074279, 40.853293],
