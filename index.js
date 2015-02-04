@@ -12,18 +12,45 @@
  * @param {Polygon} polygon a Polygon feature
  * @return {Boolean} `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon
  * @example
- * var pt1 = turf.point([-111.467285, 40.75766],
- *  {'marker-color': "#f00"});
- * var pt2 = turf.point([-111.873779, 40.647303],
- *  {'marker-color': "#0f0" });
- * var poly = turf.polygon([[
- *  [-112.074279, 40.52215],
- *  [-112.074279, 40.853293],
- *  [-111.610107, 40.853293],
- *  [-111.610107, 40.52215],
- *  [-112.074279, 40.52215]
- * ]]);
- * var features = turf.featurecollection([pt1, pt2, poly]);
+ * var pt1 = {
+ *   "type": "Feature",
+ *   "properties": {
+ *     "marker-color": "#f00"
+ *   },
+ *   "geometry": {
+ *     "type": "Point",
+ *     "coordinates": [-111.467285, 40.75766]
+ *   }
+ * };
+ * var pt2 = {
+ *   "type": "Feature",
+ *   "properties": {
+ *     "marker-color": "#0f0"
+ *   },
+ *   "geometry": {
+ *     "type": "Point",
+ *     "coordinates": [-111.873779, 40.647303]
+ *   }
+ * };
+ * var poly = {
+ *   "type": "Feature",
+ *   "properties": {},
+ *   "geometry": {
+ *     "type": "Polygon",
+ *     "coordinates": [[
+ *       [-112.074279, 40.52215],
+ *       [-112.074279, 40.853293],
+ *       [-111.610107, 40.853293],
+ *       [-111.610107, 40.52215],
+ *       [-112.074279, 40.52215]
+ *     ]]
+ *   }
+ * };
+ *
+ * var features = {
+ *   "type": "FeatureCollection",
+ *   "features": [pt1, pt2, poly]
+ * };
  *
  * //=features
  *
