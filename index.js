@@ -8,6 +8,7 @@
  * and accounts for holes.
  *
  * @module turf/inside
+ * @category joins
  * @param {Point} point a Point feature
  * @param {Polygon} polygon a Polygon feature
  * @return {Boolean} `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon
