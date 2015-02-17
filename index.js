@@ -1,16 +1,18 @@
+var invariant = require('turf-invariant');
+
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
 
 /**
- * Takes a {@link Point} feature and a {@link Polygon} feature and determines if the Point resides inside the Polygon. The Polygon can
- * be convex or concave. The function accepts any valid Polygon or {@link MultiPolygon}
- * and accounts for holes.
+ * Takes a {@link Point} feature and a {@link Polygon} or {@link MultiPolygon}
+ * feature and determines if the Point resides inside the Polygon. The Polygon can
+ * be convex or concave. The function accounts for holes.
  *
  * @module turf/inside
  * @category joins
  * @param {Point} point a Point feature
- * @param {Polygon} polygon a Polygon feature
+ * @param {Polygon|MultiPolygon} polygon a Polygon or MultiPolygon feature
  * @return {Boolean} `true` if the Point is inside the Polygon; `false` if the Point is not inside the Polygon
  * @example
  * var pt1 = {
@@ -62,10 +64,11 @@
  * //=isInside2
  */
 module.exports = function(point, polygon) {
+  invariant.featureOf(point, 'Point', 'inside');
   var polys = polygon.geometry.coordinates;
   var pt = [point.geometry.coordinates[0], point.geometry.coordinates[1]];
   // normalize to multipolygon
-  if(polygon.geometry.type === 'Polygon') polys = [polys];
+  if (polygon.geometry.type === 'Polygon') polys = [polys];
 
   var insidePoly = false;
   var i = 0;
@@ -86,7 +89,7 @@ module.exports = function(point, polygon) {
     i++;
   }
   return insidePoly;
-}
+};
 
 // pt is [x,y] and ring is [[x,y], [x,y],..]
 function inRing (pt, ring) {
@@ -94,11 +97,9 @@ function inRing (pt, ring) {
   for (var i = 0, j = ring.length - 1; i < ring.length; j = i++) {
     var xi = ring[i][0], yi = ring[i][1];
     var xj = ring[j][0], yj = ring[j][1];
-    
-    var intersect = ((yi > pt[1]) != (yj > pt[1]))
-        && (pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi);
+    var intersect = ((yi > pt[1]) != (yj > pt[1])) &&
+        (pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi);
     if (intersect) isInside = !isInside;
   }
   return isInside;
 }
-

@@ -4,6 +4,16 @@ var point = require('turf-point');
 var polygon = require('turf-polygon');
 var fs = require('fs');
 
+test('bad type', function (t) {
+  var poly = polygon([[[0,0], [0,100], [100,100], [100,0], [0,0]]]);
+
+  t.throws(function() {
+      inside(poly, poly);
+  }, /Invalid input to inside: must be a Point, given Polygon/);
+
+  t.end();
+});
+
 test('featureCollection', function (t) {
   // test for a simple polygon
   var poly = polygon([[[0,0], [0,100], [100,100], [100,0], [0,0]]]);

@@ -27,7 +27,8 @@
   "homepage": "https://github.com/Turfjs/turf-inside",
   "bin": {},
   "dependencies": {
-    "minimist": "^1.1.0"
+    "minimist": "^1.1.0",
+    "turf-invariant": "^1.0.3"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
