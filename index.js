@@ -5,8 +5,7 @@ var invariant = require('turf-invariant');
 // which was modified from http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
 
 /**
- * Takes a point and a polygon or multipolygon
- * feature and determines if the point resides inside the polygon. The polygon can
+ * Takes a {@link Point} and a {@link Polygon} or {@link MultiPolygon} and determines if the point resides inside the polygon. The polygon can
  * be convex or concave. The function accounts for holes.
  *
  * @module turf/inside
