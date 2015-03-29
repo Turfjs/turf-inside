@@ -96,7 +96,7 @@ function inRing (pt, ring) {
   for (var i = 0, j = ring.length - 1; i < ring.length; j = i++) {
     var xi = ring[i][0], yi = ring[i][1];
     var xj = ring[j][0], yj = ring[j][1];
-    var intersect = ((yi > pt[1]) != (yj > pt[1])) &&
+    var intersect = ((yi > pt[1]) !== (yj > pt[1])) &&
         (pt[0] < (xj - xi) * (pt[1] - yi) / (yj - yi) + xi);
     if (intersect) isInside = !isInside;
   }
