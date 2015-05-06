@@ -67,6 +67,8 @@ var flatten = require('turf-flatten');
 module.exports = function(point, surface) {
   invariant.featureOf(point, 'Point', 'inside');
 
+  if(surface.geometry.type === 'Polygon') return pointInPolygon(point, surface)
+  
   var fc = normalize(flatten(surface));
 
   var isInside = false;
