@@ -62,3 +62,13 @@ test('multipolygon with hole', function (t) {
 
   t.end();
 });
+
+test('points', function (t) {
+  var pt2 = point([-86.69208526611328, 36.20373274711739]);
+  var pt1 = point([-86.72229766845702, 36.20258997094334]);
+
+  t.false(inside(pt1, pt2));
+  t.true(inside(pt1, pt1));
+
+  t.end();
+});

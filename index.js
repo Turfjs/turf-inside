@@ -67,7 +67,8 @@ var flatten = require('turf-flatten');
 module.exports = function(point, surface) {
   invariant.featureOf(point, 'Point', 'inside');
 
-  if(surface.geometry.type === 'Polygon') return pointInPolygon(point, surface)
+  if(surface.geometry.type === 'Point') return pointInPoint(point, surface);
+  if(surface.geometry.type === 'Polygon') return pointInPolygon(point, surface);
   
   var fc = normalize(flatten(surface));
 
@@ -109,6 +110,15 @@ function pointInPolygon (point, polygon) {
   }
 
   return insidePoly;
+}
+
+function pointInPoint(pt1, pt2) {
+  if(pt1.geometry.coordinates[0] === pt2.geometry.coordinates[0] &&
+    pt1.geometry.coordinates[1] === pt2.geometry.coordinates[1]) {
+    return true;
+  } else {
+    return false;
+  }
 }
 
 // pt is [x,y] and ring is [[x,y], [x,y],..]
