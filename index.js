@@ -1,4 +1,6 @@
 var invariant = require('turf-invariant');
+var normalize = require('turf-normalize');
+var flatten = require('turf-flatten');
 
 // http://en.wikipedia.org/wiki/Even%E2%80%93odd_rule
 // modified from: https://github.com/substack/point-in-polygon/blob/master/index.js
@@ -62,33 +64,50 @@ var invariant = require('turf-invariant');
  * var isInside2 = turf.inside(pt2, poly);
  * //=isInside2
  */
-module.exports = function(point, polygon) {
+module.exports = function(point, surface) {
   invariant.featureOf(point, 'Point', 'inside');
-  var polys = polygon.geometry.coordinates;
+
+  var fc = normalize(flatten(surface));
+
+  var isInside = false;
+  for(var i = 0; i < fc.features.length; i++) {
+    if(fc.features[i].geometry.type === 'Point') {
+
+    } else if(fc.features[i].geometry.type === 'LineString') {
+      
+    } else if(fc.features[i].geometry.type === 'Polygon') {
+      if(pointInPolygon(point, fc.features[i])) {
+        isInside = true;
+        break;
+      }
+    }
+  }
+  return isInside;
+};
+
+function pointInPolygon (point, polygon) {
+  var poly = polygon.geometry.coordinates;
   var pt = [point.geometry.coordinates[0], point.geometry.coordinates[1]];
   // normalize to multipolygon
-  if (polygon.geometry.type === 'Polygon') polys = [polys];
 
   var insidePoly = false;
-  var i = 0;
-  while (i < polys.length && !insidePoly) {
     // check if it is in the outer ring first
-    if(inRing(pt, polys[i][0])) {
-      var inHole = false;
-      var k = 1;
-      // check for the point in any of the holes
-      while(k < polys[i].length && !inHole) {
-        if(inRing(pt, polys[i][k])) {
-          inHole = true;
-        }
-        k++;
+  if(inRing(pt, poly[0])) {
+    var inHole = false;
+    var k = 1;
+    // check for the point in any of the holes
+    while(k < poly.length && !inHole) {
+      if(inRing(pt, poly[k])) {
+        inHole = true;
+        break;
       }
-      if(!inHole) insidePoly = true;
+      k++;
     }
-    i++;
+    if(!inHole) insidePoly = true;
   }
+
   return insidePoly;
-};
+}
 
 // pt is [x,y] and ring is [[x,y], [x,y],..]
 function inRing (pt, ring) {

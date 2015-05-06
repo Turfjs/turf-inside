@@ -28,7 +28,9 @@
   "bin": {},
   "dependencies": {
     "minimist": "^1.1.0",
-    "turf-invariant": "^1.0.3"
+    "turf-flatten": "^1.0.0",
+    "turf-invariant": "^1.0.3",
+    "turf-normalize": "^1.0.2"
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
