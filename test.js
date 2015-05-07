@@ -81,8 +81,8 @@ test('point', function (t) {
 
 test('linestring', function (t) {
   var pt = point([1,1]);
-  var line1 = linestring([[86,42],[66,25],[93,23],[0,16],[-40,5],[16,-20],[1,1]], 'in');
-  var line2 = linestring([[86,42],[66,25],[93,23],[86,42],[-54,63],[-80,53],[-60,52],[-54,63]], 'out');
+  var line1 = linestring([[86,42],[66,25],[93,23],[0,16],[-40,5],[16,-20],[1,1]]);
+  var line2 = linestring([[86,42],[66,25],[93,23],[86,42],[-54,63],[-80,53],[-60,52],[-54,63]]);
 
   t.true(inside(pt, line1), 'in');
   t.false(inside(pt, line2), 'out');
@@ -103,8 +103,8 @@ test('multipoint', function (t) {
 
 test('multilinestring', function (t) {
   var pt = point([1,1]);
-  var multiline1 = multilinestring([[[86,42],[66,25],[93,23]], [[1,1],[-40,5],[16,-20],[0,16]]], 'in');
-  var multiline2 = multilinestring([[[86,42],[66,25],[93,23]], [[-54,63],[-80,53],[-60,52]]], 'out');
+  var multiline1 = multilinestring([[[86,42],[66,25],[93,23]], [[1,1],[-40,5],[16,-20],[0,16]]]);
+  var multiline2 = multilinestring([[[86,42],[66,25],[93,23]], [[-54,63],[-80,53],[-60,52]]]);
 
   t.true(inside(pt, multiline1), 'in');
   t.false(inside(pt, multiline2), 'out');
@@ -114,8 +114,8 @@ test('multilinestring', function (t) {
 
 test('multipolygon', function (t) {
   var pt = point([1,1]);
-  var multipoly1 = multipolygon([[[[86,42],[66,25],[93,23],[86,42]]], [[[0,16],[-40,5],[16,-20],[0,16]]]], 'in');
-  var multipoly2 = multipolygon([[[[86,42],[66,25],[93,23],[86,42]]], [[[-54,63],[-80,53],[-60,52],[-54,63]]]], 'out');
+  var multipoly1 = multipolygon([[[[86,42],[66,25],[93,23],[86,42]]], [[[0,16],[-40,5],[16,-20],[0,16]]]]);
+  var multipoly2 = multipolygon([[[[86,42],[66,25],[93,23],[86,42]]], [[[-54,63],[-80,53],[-60,52],[-54,63]]]]);
 
   t.true(inside(pt, multipoly1), 'in');
   t.false(inside(pt, multipoly2), 'out');
