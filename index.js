@@ -67,26 +67,41 @@ var flatten = require('turf-flatten');
 module.exports = function(point, surface) {
   invariant.featureOf(point, 'Point', 'inside');
 
-  if(surface.geometry.type === 'Point') return pointInPoint(point, surface);
-  if(surface.geometry.type === 'Polygon') return pointInPolygon(point, surface);
-  
-  var fc = normalize(flatten(surface));
+  if(surface.type === 'Feature' &&
+     (surface.geometry.type === 'Polygon' ||
+     surface.geometry.type === 'LineString' ||
+     surface.geometry.type === 'Point')) return pointInSingle(point, surface);
+  else {
+    var fc = normalize(flatten(surface));
+    var isInside = false;
+    for(var i = 0; i < fc.features.length; i++) {
+      if(fc.features[i].geometry.type === 'MultiPolygon' ||
+         fc.features[i].geometry.type === 'MultiLineString' ||
+         fc.features[i].geometry.type === 'MultiPoint') {
+        var multiFC = flatten(normalize(fc.features[i]));
 
-  var isInside = false;
-  for(var i = 0; i < fc.features.length; i++) {
-    if(fc.features[i].geometry.type === 'Point') {
-
-    } else if(fc.features[i].geometry.type === 'LineString') {
-      
-    } else if(fc.features[i].geometry.type === 'Polygon') {
-      if(pointInPolygon(point, fc.features[i])) {
-        isInside = true;
-        break;
+        for(var k = 0; k < multiFC.features.length; k++) {
+          if(pointInSingle(point, multiFC.features[k])) {
+            isInside = true;
+            break;
+          }
+        }
+      } else {
+        if(pointInSingle(point, fc.features[i])) {
+          isInside = true;
+          break;
+        }
       }
     }
+    return isInside;
   }
-  return isInside;
 };
+
+function pointInSingle(point, feature) {
+  if(feature.geometry.type === 'Point') return pointInPoint(point, feature);
+  if(feature.geometry.type === 'LineString') return pointInLineString(point, feature);
+  else if(feature.geometry.type === 'Polygon') return pointInPolygon(point, feature);
+}
 
 function pointInPolygon (point, polygon) {
   var poly = polygon.geometry.coordinates;
@@ -112,12 +127,42 @@ function pointInPolygon (point, polygon) {
   return insidePoly;
 }
 
-function pointInPoint(pt1, pt2) {
+function pointInPoint (pt1, pt2) {
   if(pt1.geometry.coordinates[0] === pt2.geometry.coordinates[0] &&
     pt1.geometry.coordinates[1] === pt2.geometry.coordinates[1]) {
     return true;
   } else {
     return false;
+  }
+}
+
+function pointInLineString (point, line) {
+  var onLine = false;
+  var k = 0;
+  while(!onLine && k < line.geometry.coordinates.length - 1) {
+    var x = point.geometry.coordinates[0];
+    var y = point.geometry.coordinates[1];
+    var x1 = line.geometry.coordinates[k][0];
+    var y1 = line.geometry.coordinates[k][1];
+    var x2 = line.geometry.coordinates[k+1][0];
+    var y2 = line.geometry.coordinates[k+1][1];
+    if((x === x1 && y === y1) ||
+       (x === x2 && y === y2) ||
+        pointOnSegment(x, y, x1, y1, x2, y2)) {
+      onLine = true;
+      break;
+    }
+    k++;
+  }
+  return onLine;
+}
+
+function pointOnSegment (x, y, x1, y1, x2, y2) {
+  var ab = Math.sqrt((x2-x1)*(x2-x1)+(y2-y1)*(y2-y1));
+  var ap = Math.sqrt((x-x1)*(x-x1)+(y-y1)*(y-y1));
+  var pb = Math.sqrt((x2-x)*(x2-x)+(y2-y)*(y2-y));
+  if(ab === ap + pb) {
+    return true;
   }
 }
 

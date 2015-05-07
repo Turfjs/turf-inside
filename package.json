@@ -34,10 +34,16 @@
   },
   "devDependencies": {
     "benchmark": "^1.0.0",
-    "tape": "^3.5.0",
-    "turf-point": "^2.0.0",
-    "turf-polygon": "^1.0.2",
     "dox": "^0.6.1",
-    "doxme": "^1.4.3"
+    "doxme": "^1.4.3",
+    "tape": "^3.5.0",
+    "turf-featurecollection": "^1.0.1",
+    "turf-geometrycollection": "^1.0.0",
+    "turf-linestring": "^1.0.2",
+    "turf-multilinestring": "^1.0.2",
+    "turf-multipoint": "^1.0.0",
+    "turf-multipolygon": "^1.0.1",
+    "turf-point": "^2.0.0",
+    "turf-polygon": "^1.0.2"
   }
 }
